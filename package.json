@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Augusto55/projeto-sprint6/issues"
   },
-  "homepage": "https://github.com/Augusto55/projeto-sprint6#readme"
+  "homepage": "https://github.com/Augusto55/projeto-sprint6#readme",
+  "dependencies": {
+    "cypress": "^9.0.0",
+    "faker": "^5.5.3"
+  }
 }
