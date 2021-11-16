@@ -1,0 +1,19 @@
+{
+  "name": "projeto-sprint6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Augusto55/projeto-sprint6.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Augusto55/projeto-sprint6/issues"
+  },
+  "homepage": "https://github.com/Augusto55/projeto-sprint6#readme"
+}
