@@ -100,6 +100,7 @@ export default class Base{
     static verificarSeElementoNãoContemAtr(element, atr) {
       cy.get(element).should('not.have.attr', atr)
     }
+    
   
     static validateElementValue(element, text, index = undefined) {
       this.typeValue(element, text)

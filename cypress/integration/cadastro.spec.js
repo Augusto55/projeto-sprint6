@@ -1,22 +1,32 @@
 /// <reference types="cypress" />
 
 import GenerateFixtures from '../pages/generateFixtures.js'
+import CSCadastro from '../pages/sm_cadastro.page.js'
+import CSLogin from '../pages/sm_login.page.js'
 
-describe('Testes Front ServeRest - CADASTRO DE USUARIOS', () => {
+
     describe('Testes cadastro de usuário/Positivos', () => {
         before(() => {
-            ServeRestLogin.acessarServeRest()
+            CSCadastro.acessarCommerceSuite()
             GenerateFixtures.gerarUsuario()
         })
-        it('Validar campos para realizar o cadastro', () => {
-            ServeRestCadastrarUsuario.campos_cadastro()          
-        })
-        describe('Cadastro de usuário com propriedades de administrador', () => {
-            it('Deve cadastrar um usuário admin', () => {
-                ServeRestLogin.acessarServeRestCadastro()
-                ServeRestCadastrarUsuario.realizar_cadastroAdmin()
-                cy.wait(1500)           
-            })
+        it('Deve cadastrar uma pessoa física com sucesso', () => {
+            CSCadastro.validarUrl(`${Cypress.env('baseURL')}`)
+            CSCadastro.entrarCadastro()
+            CSCadastro.validarCamposCadastro()
+            CSCadastro.digitarCamposCadastro()
+            cy.wait(5000)
+            CSCadastro.validarCadastro()      
         })
     })
-})
+
+    describe('Testes cadastro de usuário/Negativos', () => {
+        it('Deve tentar cadastrar um usuário com CPF inválido', () => {
+            GenerateFixtures.gerarUsuarioInvalido()
+            CSLogin.logout()
+            CSCadastro.entrarCadastro()
+            CSCadastro.validarCamposCadastro()
+            CSCadastro.digitarCamposCadastroInvalido()
+        })
+    })
+   

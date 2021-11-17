@@ -1,18 +1,38 @@
 import faker from "faker"
 import fakerbr from "faker-br"
+const { fakerBr } = require('js-brasil');
+import Base from './_base.page'
 
 export default class GenerateFixtures extends Base {
     static gerarUsuario() {
         cy.writeFile('cypress/fixtures/usuario.json', {
-            'hits':Cypress._.times(1, () => {
-              return {
+            'valido' :
+                 {
                 "nome": `${fakerbr.name.firstName()} ${fakerbr.name.lastName()}`,
-                "email": `${faker.internet.email()}`,
-                "cpf": `${fakerbr.br.cpf()}`,
-                "senha": `${faker.internet.password()}`,
-                "administrador": `${faker.datatype.boolean()}`
+                "data": `${fakerBr.data()}`,
+                "cpf": `${fakerBr.cpf()}`,
+                "telefoneFixo": `${fakerBr.telefone()}`,
+                "telefoneCelular": `${fakerBr.celular()}`,
+                "email": `${fakerbr.internet.email()}`,
+                "senha": `${faker.internet.password()}`
               }
-            })
+            
           })
     }
+
+    static gerarUsuarioInvalido() {
+      cy.writeFile('cypress/fixtures/usuarioInvalido.json',  {
+          'Invalido' :
+               {
+              "nome": `${fakerbr.name.firstName()} ${fakerbr.name.lastName()}`,
+              "data": `${fakerBr.data()}`,
+              "cpf": `${fakerbr.name.firstName()}`,
+              "telefoneFixo": `${fakerBr.telefone()}`,
+              "telefoneCelular": `${fakerBr.celular()}`,
+              "email": `${fakerbr.internet.email()}`,
+              "senha": `${faker.internet.password()}`
+            }
+          
+        })
+  }
 }
