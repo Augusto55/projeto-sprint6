@@ -8,7 +8,6 @@ import CSLogin from '../pages/sm_login.page.js'
     describe('Testes cadastro de usuário/Positivos', () => {
         before(() => {
             CSCadastro.acessarCommerceSuite()
-            GenerateFixtures.gerarUsuario()
         })
         it('Deve cadastrar uma pessoa física com sucesso', () => {
             CSCadastro.validarUrl(`${Cypress.env('baseURL')}`)
@@ -27,6 +26,7 @@ import CSLogin from '../pages/sm_login.page.js'
             CSCadastro.entrarCadastro()
             CSCadastro.validarCamposCadastro()
             CSCadastro.digitarCamposCadastroInvalido()
+            CSCadastro.validarCadastroInvalido()
         })
     })
    

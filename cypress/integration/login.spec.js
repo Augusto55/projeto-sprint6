@@ -5,27 +5,25 @@ import CSCadastro from '../pages/sm_cadastro.page.js'
 import CSLogin from '../pages/sm_login.page.js'
 
 
-describe('Testes cadastro de usuário/Positivos', () => {
+describe('Testes de login/Positivos', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+      });
+
     before(() => {
         CSCadastro.acessarCommerceSuite()
-        GenerateFixtures.gerarUsuario()
     })
-    it('Deve cadastrar uma pessoa física com sucesso', () => {
+    it('Deve logar uma pessoa física com sucesso', () => {
         CSCadastro.validarUrl(`${Cypress.env('baseURL')}`)
-        CSCadastro.entrarCadastro()
-        CSCadastro.validarCamposCadastro()
-        CSCadastro.digitarCamposCadastro()
+        CSLogin.validarEntrarLogin()  
+        CSLogin.logar() 
         cy.wait(5000)
-        CSCadastro.validarCadastro()      
+        CSLogin.validarLogin()  
     })
 })
 
-describe('Testes cadastro de usuário/Negativos', () => {
-    it('Deve tentar cadastrar um usuário com CPF inválido', () => {
-        GenerateFixtures.gerarUsuarioInvalido()
-        CSLogin.logout()
-        CSCadastro.entrarCadastro()
-        CSCadastro.validarCamposCadastro()
-        CSCadastro.digitarCamposCadastroInvalido()
+describe('Testes de login/Negativos', () => {
+    it('Deve tentar logar um usuário não cadastrado', () => {
+        CSLogin.logarInvalido()
     })
 })

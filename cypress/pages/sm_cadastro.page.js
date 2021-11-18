@@ -1,4 +1,5 @@
 import Base from './_base.page';
+import GenerateFixtures from '../pages/generateFixtures.js'
 import {HOMEPAGE as HP} from './components/cadastro.elements.js'
 import {CADASTRO as C} from './components/cadastro.elements.js'
 
@@ -25,7 +26,8 @@ export default class CSCadastro extends Base {
     }
     
     static digitarCamposCadastro() {
-        cy.fixture(`../fixtures/usuario.json`).then((usuario) => {
+        GenerateFixtures.gerarUsuario()
+        cy.readFile(`cypress/fixtures/usuario.json`).then((usuario) => {
             super.typeValue(C.TXT_NOME, usuario.valido.nome)
             super.typeValue(C.TXT_DATA, usuario.valido.data)
             super.typeValue(C.TXT_CPF, usuario.valido.cpf)
@@ -37,7 +39,18 @@ export default class CSCadastro extends Base {
         })
         super.validarElemento(C.BTN_AVANÇAR)
         super.clickOnElement(C.BTN_AVANÇAR)
+        cy.wait(5000)
+
+        cy.url().then((url) => {
+            if (url.includes('/cadastro')) {
+                cy.reload()
+                this.digitarCamposCadastro()
+            }
+        })
     }
+
+
+   
 
     static validarCadastro() {
         super.validarUrl('/loja')
@@ -57,6 +70,9 @@ export default class CSCadastro extends Base {
             super.typeValue(C.TXT_SENHA, usuario.Invalido.senha)
             super.typeValue(C.TXT_SENHA2, usuario.Invalido.senha)
         })
+    }
+
+    static validarCadastroInvalido() {
         super.validarElemento(C.BTN_AVANÇAR)
         super.clickOnElement(C.BTN_AVANÇAR)
         super.validateElementText(C.TXT_ERROCPF, 'Para prosseguir com o cadastro, por favor, informe um CPF válido.')
