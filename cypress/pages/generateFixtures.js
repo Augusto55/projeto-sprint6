@@ -35,4 +35,15 @@ export default class GenerateFixtures extends Base {
           
         })
   }
+
+  static gerarCep() {
+    cy.writeFile('cypress/fixtures/endereco.json',  {
+      'valido' :
+           {
+          "cep": `${fakerBr.cep()}`,
+          "numero": `${faker.datatype.number()}`
+        }
+      
+    })
+  }
 }

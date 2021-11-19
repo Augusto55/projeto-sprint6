@@ -17,7 +17,7 @@ export default class CSLogin extends Base {
     }
 
     static logar() {
-        cy.readFile(`cypress/fixtures/usuario.json`).then((usuario) => {
+        cy.fixture(`../fixtures/usuario.json`).then((usuario) => {
             super.typeValue(LP.TXT_USER, usuario.valido.email)
         })
         super.clickOnElement(LP.BTN_CONTINUAR)
