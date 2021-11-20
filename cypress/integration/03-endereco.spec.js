@@ -23,7 +23,16 @@ describe('Testes de cadastro de endereço/Positivos', () => {
 })
 
 describe('Testes de cadastro de endereço/Negativos', () => {
-    it('Deve tentar logar um usuário não cadastrado', () => {
-        
+    before(() => {
+        CSCadastro.acessarCommerceSuite()
+        CSLogin.validarEntrarLogin()  
+        CSLogin.logar()
+        CSCadastro.validarUrl('/my-account')
+    })
+    it.only('Deve tentar cadastrar um CEP com caracteres inválidos', () => {
+        CSEndereco.validarEntrarEndereco()
+        CSEndereco.cadastrarEnderecoInvalido()
+        CSEndereco.validarEnderecoInvalido()
     })
 })
+

@@ -19,6 +19,8 @@ export default class CSEndereco extends Base {
     
     static cadastrarEndereco() {
         GenerateFixtures.gerarCep()
+        cy.get(E.INPUT_NOMEENDERECO).clear()
+        cy.get(E.INPUT_CEP).clear()
         cy.readFile(`cypress/fixtures/endereco.json`).then((endereco) => {
             super.typeValue(E.INPUT_CEP, endereco.valido.cep)
         })
@@ -36,5 +38,23 @@ export default class CSEndereco extends Base {
                 this.cadastrarEndereco()
             }
         })
+    }
+
+    static cadastrarEnderecoInvalido() {
+        cy.get(E.INPUT_CEP).clear()
+        super.typeValue(E.INPUT_CEP, "965163198")
+        cy.get(E.INPUT_NOMEENDERECO).clear()
+        super.typeValue(E.INPUT_NOMEENDERECO, "invalido")
+        cy.get(E.INPUT_NUMERO).clear()
+        super.typeValue(E.INPUT_NUMERO, "777")
+        cy.get(E.INPUT_RUA).clear()
+        super.typeValue(E.INPUT_RUA, "invalido")
+        cy.get(E.INPUT_BAIRRO).clear()
+        super.typeValue(E.INPUT_BAIRRO, "invalido")
+        super.clickOnElement(E.BTN_SALVAR)
+    }
+
+    static validarEnderecoInvalido() {
+        super.validateElementText(E.MSG_ERROR, 'O endereço não foi salvo! Tente novamente em alguns instantes.')
     }
 }
