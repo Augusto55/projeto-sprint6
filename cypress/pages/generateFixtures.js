@@ -46,4 +46,5 @@ export default class GenerateFixtures extends Base {
       
     })
   }
+
 }
