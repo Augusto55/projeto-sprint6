@@ -6,10 +6,6 @@ import CSEndereco from '../pages/sm_endereco.page.js'
 
 
 describe('Testes de cadastro de endereço/Positivos', () => {
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-      });
-
     before(() => {
         CSCadastro.acessarCommerceSuite()
         CSLogin.validarEntrarLogin()  
@@ -29,8 +25,9 @@ describe('Testes de cadastro de endereço/Negativos', () => {
         CSLogin.logar()
         CSCadastro.validarUrl('/my-account')
     })
-    it.only('Deve tentar cadastrar um CEP com caracteres inválidos', () => {
+    it('Deve tentar cadastrar um CEP com caracteres inválidos', () => {
         CSEndereco.validarEntrarEndereco()
+        cy.wait(4000)
         CSEndereco.cadastrarEnderecoInvalido()
         CSEndereco.validarEnderecoInvalido()
     })

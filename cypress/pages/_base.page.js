@@ -100,6 +100,10 @@ export default class Base{
     static verificarSeElementoNãoContemAtr(element, atr) {
       cy.get(element).should('not.have.attr', atr)
     }
+
+    static verificarSeElementoContemAtrEValor(element, atr, value) {
+      cy.get(element).should('have.attr', atr, value)
+    }
     
   
     static validateElementValue(element, text, index = undefined) {
@@ -111,23 +115,6 @@ export default class Base{
     }
 
   
-    // static confirmarCpf(){
-    //   for(let i=0; i<4; i++){
-    //     cy.get('.ch-well.secret-answer-option.ch-text-center').find('strong').invoke('text').then((text) => {
-    //       cy.fixture('../fixtures/usuario.json').then((usuario) => {
-    //         let cpf = usuario.valido.cpf.trim()  
-    //         if(cpf = text.trim()){
-    //           this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
-    //         }
-    //       })
-    //   });
-        
-
-        
-    //   }
-      
-    // }
-
 
     static confirmarCpf(){
       for(let i=0; i<3; i++){
@@ -143,6 +130,49 @@ export default class Base{
             let cpfFormatado2 = cpfFormatado.split('-').join("")
             let cpfFormatado3 = cpfFormatado2.trim()
             if(cpfFormatado3.includes(valorFormatado5)){
+              this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+            }
+          })
+        })
+      }
+      
+    
+    }
+
+
+    static confirmarNome(){
+      for(let i=0; i<3; i++){
+        this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((texto) => {
+        var textoFormatado = texto.split('*').join("")
+        var textoFormatado2 = textoFormatado.split(' ').join("")
+        var textoFormatado3 = textoFormatado2.trim()
+          cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
+            let nome = usuario.valido.nome 
+            let nomeFormatado = nome.split(' ').join("")
+            let nomeFormatado2 = nomeFormatado.trim()
+            console.log(nomeFormatado2,textoFormatado3)
+            if(nomeFormatado2.includes(textoFormatado3)){
+              this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+            }
+          })
+        })
+      }
+      
+    
+    }
+
+    static confirmarNomeInvalido(){
+      for(let i=0; i<3; i++){
+        this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((texto) => {
+        var textoFormatado = texto.split('*').join("")
+        var textoFormatado2 = textoFormatado.split(' ').join("")
+        var textoFormatado3 = textoFormatado2.trim()
+          cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
+            let nome = usuario.valido.nome 
+            let nomeFormatado = nome.split(' ').join("")
+            let nomeFormatado2 = nomeFormatado.trim()
+            console.log(nomeFormatado2,textoFormatado3)
+            if(!nomeFormatado2.includes(textoFormatado3)){
               this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
             }
           })
