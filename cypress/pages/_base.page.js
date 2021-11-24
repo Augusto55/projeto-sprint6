@@ -109,4 +109,51 @@ export default class Base{
   
       });
     }
+
+  
+    // static confirmarCpf(){
+    //   for(let i=0; i<4; i++){
+    //     cy.get('.ch-well.secret-answer-option.ch-text-center').find('strong').invoke('text').then((text) => {
+    //       cy.fixture('../fixtures/usuario.json').then((usuario) => {
+    //         let cpf = usuario.valido.cpf.trim()  
+    //         if(cpf = text.trim()){
+    //           this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+    //         }
+    //       })
+    //   });
+        
+
+        
+    //   }
+      
+    // }
+
+
+    static confirmarCpf(){
+      for(let i=0; i<3; i++){
+        this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((valor) => {
+        var valorFormatado = valor.split('.').join("")
+        var valorFormatado2 = valorFormatado.split('*').join("")
+        var valorFormatado3 = valorFormatado2.split('-').join("")
+        var valorFormatado4 = valorFormatado3.split('\n').join("")
+        var valorFormatado5 = valorFormatado4.trim()
+          cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
+            let cpf = usuario.valido.cpf 
+            let cpfFormatado = cpf.split('.').join("")
+            let cpfFormatado2 = cpfFormatado.split('-').join("")
+            let cpfFormatado3 = cpfFormatado2.trim()
+            if(cpfFormatado3.includes(valorFormatado5)){
+              this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+            }
+          })
+        })
+      }
+      
+    
+    }
+  
+    
+    
+
+
   }
