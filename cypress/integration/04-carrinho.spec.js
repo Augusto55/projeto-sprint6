@@ -4,11 +4,7 @@ import CSCadastro from '../pages/sm_cadastro.page.js'
 import CSCarrinho from '../pages/sm_carrinho.page.js'
 
 
-describe('Testes de cadastro de endereço/Positivos', () => {
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-      });
-
+describe('Testes de carrinho/Positivos', () => {
     before(() => {
         CSCadastro.acessarCommerceSuite()
     })
@@ -22,7 +18,7 @@ describe('Testes de cadastro de endereço/Positivos', () => {
     })
 })
 
-describe('Testes de cadastro de endereço/Negativos', () => {
+describe('Testes de carrinho/Negativos', () => {
     before(() => {
         CSCadastro.acessarCommerceSuite()
         CSCarrinho.validarProdutos()

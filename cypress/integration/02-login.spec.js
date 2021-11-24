@@ -6,10 +6,6 @@ import CSLogin from '../pages/sm_login.page.js'
 
 
 describe('Testes de login/Positivos', () => {
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-      });
-
     before(() => {
         CSCadastro.acessarCommerceSuite()
     })

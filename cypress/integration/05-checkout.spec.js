@@ -3,14 +3,9 @@
 import CSCadastro from '../pages/sm_cadastro.page.js'
 import CSCarrinho from '../pages/sm_carrinho.page.js'
 import CSCheckout from '../pages/sm_checkout.page.js';
-import CSLogin from '../pages/sm_login.page.js'
 
 describe('Testes de checkout/Positivos', () => {
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-      });
-
-    before(() => {
+    beforeEach(() => {
         CSCadastro.acessarCommerceSuite()
         CSCarrinho.validarProdutos()
         CSCarrinho.validarModal()
@@ -19,19 +14,26 @@ describe('Testes de checkout/Positivos', () => {
     it('Deve realizar o checkout logando com o email e confirmando o CPF', () => {
         CSCheckout.validarLoginCheckout()
         CSCheckout.logarEmailCheckout()
+        CSCheckout.validarCheckout()
+    })
+
+    it('Deve realizar o checkout logando com o CPF e confirmando o nome ou sobrenome', () => {
+        CSCheckout.validarLoginCheckout()
+        CSCheckout.logarCPFCheckout()
+        CSCheckout.validarCheckout()
     })
 })
 
-// describe('Testes de checkout/Negativos', () => {
-//     before(() => {
-//         CSCadastro.acessarCommerceSuite()
-//         CSCarrinho.validarProdutos()
-//         CSCarrinho.validarModal()
-//         CSCarrinho.validarCarrinho()
-//     })
-//     it.skip('Deve tentar cadastrar um CEP com caracteres inválidos', () => {
-//         CSEndereco.validarEntrarEndereco()
-//         CSEndereco.cadastrarEnderecoInvalido()
-//         CSEndereco.validarEnderecoInvalido()
-//     })
-// })
+describe('Testes de checkout/Negativos', () => {
+    before(() => {
+        CSCadastro.acessarCommerceSuite()
+        CSCarrinho.validarProdutos()
+        CSCarrinho.validarModal()
+        CSCarrinho.validarCarrinho()
+    })
+    it('Deve tentar validar o login com um CPF inválido', () => {
+        CSCheckout.validarLoginCheckout()
+        CSCheckout.logarCPFCheckoutInvalido()
+        CSCheckout.validarCheckoutInvalido()
+    })
+})
