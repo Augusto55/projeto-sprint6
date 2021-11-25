@@ -11,13 +11,13 @@ describe('Testes de checkout/Positivos', () => {
         CSCarrinho.validarModal()
         CSCarrinho.validarCarrinho()
     })
-    it('Deve realizar o checkout logando com o email e confirmando o CPF', () => {
+    it('Deve realizar o checkout logando com o email e confirmando os dados', () => {
         CSCheckout.validarLoginCheckout()
         CSCheckout.logarEmailCheckout()
         CSCheckout.validarCheckout()
     })
 
-    it('Deve realizar o checkout logando com o CPF e confirmando o nome ou sobrenome', () => {
+    it('Deve realizar o checkout logando com o CPF e confirmando os dados', () => {
         CSCheckout.validarLoginCheckout()
         CSCheckout.logarCPFCheckout()
         CSCheckout.validarCheckout()

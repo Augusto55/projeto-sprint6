@@ -167,8 +167,8 @@ export default class Base{
         this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((endereco) => {
         var enderecoFormatado = endereco.split(' ').join("")
         var enderecoFormatado2 = enderecoFormatado.trim()
-        let enderecoGet = 'Leste'
-        if(enderecoFormatado2.includes(enderecoGet)){
+        console.log(enderecoFormatado2)
+        if(enderecoFormatado2.includes('Avenida') || enderecoFormatado2.includes('Brasil') || enderecoFormatado2.includes('Leste')) {
               this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
             }
           
@@ -189,8 +189,9 @@ export default class Base{
             let nome = usuario.valido.nome 
             let nomeFormatado = nome.split(' ').join("")
             let nomeFormatado2 = nomeFormatado.trim()
-            if(!nomeFormatado2.includes(textoFormatado3)){
+            if(!nomeFormatado2.includes(textoFormatado3) || !texto.includes('Avenida') || !texto.includes('Brasil') || !texto.includes('Leste')){
               this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+              i = 3 
             }
           })
         })
