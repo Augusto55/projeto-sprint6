@@ -1,7 +1,7 @@
 {
   "name": "projeto-sprint6",
   "version": "1.0.0",
-  "description": "",
+  "description": "Preparação:",
   "main": "index.js",
   "scripts": {
     "cy:run": "cypress run",

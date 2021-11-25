@@ -150,7 +150,6 @@ export default class Base{
             let nome = usuario.valido.nome 
             let nomeFormatado = nome.split(' ').join("")
             let nomeFormatado2 = nomeFormatado.trim()
-            console.log(nomeFormatado2,textoFormatado3)
             if(nomeFormatado2.includes(textoFormatado3)){
               this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
             }
@@ -161,8 +160,27 @@ export default class Base{
     
     }
 
+
+    
+    static confirmarEndereco(){
+      for(let i=0; i<3; i++){
+        this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((endereco) => {
+        var enderecoFormatado = endereco.split(' ').join("")
+        var enderecoFormatado2 = enderecoFormatado.trim()
+        console.log(enderecoFormatado2)
+        if(enderecoFormatado2.includes('Avenida') || enderecoFormatado2.includes('Brasil') || enderecoFormatado2.includes('Leste')) {
+              this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+            }
+          
+        })
+      }
+      
+    
+    }
+
     static confirmarNomeInvalido(){
       for(let i=0; i<3; i++){
+        cy.wait(3000)
         this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((texto) => {
         var textoFormatado = texto.split('*').join("")
         var textoFormatado2 = textoFormatado.split(' ').join("")
@@ -171,15 +189,34 @@ export default class Base{
             let nome = usuario.valido.nome 
             let nomeFormatado = nome.split(' ').join("")
             let nomeFormatado2 = nomeFormatado.trim()
-            console.log(nomeFormatado2,textoFormatado3)
-            if(!nomeFormatado2.includes(textoFormatado3)){
+            if(!nomeFormatado2.includes(textoFormatado3) || !texto.includes('Avenida') || !texto.includes('Brasil') || !texto.includes('Leste')){
               this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
+              i = 3 
             }
           })
         })
       }
       
     
+    }
+
+
+    static selecionarValidacao(){
+      this.getElementText('.ch-input.ch-input-disabled.ch-text-center.ch-vspace-sm').then((texto) => {
+        if(texto.includes('CPF')){
+          this.confirmarCpf()
+        }
+        else if(texto.includes('nome')){
+          this.confirmarNome()
+        }
+        else {
+          this.confirmarEndereco()
+        }
+      })
+
+
+
+
     }
   
     
