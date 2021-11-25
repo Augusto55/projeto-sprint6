@@ -19,7 +19,8 @@ export default class CSCheckout extends Base {
             super.typeValue(CO.INPUT_USER, usuario.valido.email)
         })
         super.clickOnElement(CO.BTN_CONTINUAR)
-        super.confirmarCpf()
+        cy.wait(2000)
+        super.selecionarValidacao()
     }
 
     static logarCPFCheckout(){
@@ -27,7 +28,8 @@ export default class CSCheckout extends Base {
             super.typeValue(CO.INPUT_USER, usuario.valido.cpf)
         })
         super.clickOnElement(CO.BTN_CONTINUAR)
-        super.confirmarNome()
+        cy.wait(2000)
+        super.selecionarValidacao()
     }
 
 
@@ -48,6 +50,7 @@ export default class CSCheckout extends Base {
             super.typeValue(CO.INPUT_USER, usuario.valido.cpf)
         })
         super.clickOnElement(CO.BTN_CONTINUAR)
+        cy.wait(2000)
         super.confirmarNomeInvalido()
     }
 

@@ -21,9 +21,10 @@ export default class CSEndereco extends Base {
         GenerateFixtures.gerarCep()
         cy.get(E.INPUT_NOMEENDERECO).clear()
         cy.get(E.INPUT_CEP).clear()
-        cy.readFile(`cypress/fixtures/endereco.json`).then((endereco) => {
-            super.typeValue(E.INPUT_CEP, endereco.valido.cep)
-        })
+        // cy.readFile(`cypress/fixtures/endereco.json`).then((endereco) => {
+        //     super.typeValue(E.INPUT_CEP, endereco.valido.cep)
+        // })
+        super.typeValue(E.INPUT_CEP, '99010-000')
         cy.wait(2000)
         super.typeValue(E.INPUT_NOMEENDERECO, "valido")
         cy.readFile(`cypress/fixtures/endereco.json`).then((endereco) => {
