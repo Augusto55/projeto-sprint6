@@ -28,5 +28,10 @@
     "faker-br": "^0.4.1",
     "js-brasil": "^2.5.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "install": "^0.13.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.0",
+    "npm": "^8.1.4"
+  }
 }
