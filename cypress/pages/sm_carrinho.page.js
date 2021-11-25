@@ -7,11 +7,10 @@ import faker from "faker"
 export default class CSCarrinho extends Base {
     static validarProdutos(){
         cy.get(P.IMG_PRODUTOS).should('have.descendants', 'img')
-        for (let i = 0; i < 4; i++){
-            super.validarElemento(P.NOME_PRODUTOS)
-            super.validarElemento(P.PRECO_PRODUTOS)
-            super.validarElemento(P.ADD_PRODUTO)
-        }
+        super.validarElemento(P.NOME_PRODUTOS)
+        super.validarElemento(P.PRECO_PRODUTOS)
+        super.validarElemento(P.ADD_PRODUTO)
+        
         var randomNum = faker.datatype.number(
             {
             'min': 5,

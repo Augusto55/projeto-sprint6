@@ -34,9 +34,8 @@ export default class CSCheckout extends Base {
 
 
     static validarCheckout() {
-        for (let i = 0; i < 3; i++) {
-            super.validarElemento(CO.DIVS_CHECKOUT, i)
-        }
+        super.validarElemento(CO.DIVS_CHECKOUT)
+        
         super.validarElemento(CO.DIV_ENVIO)
         super.validarElemento(CO.IMG_PRODUTOS)
         super.validarElemento(CO.NOME_PRODUTO)

@@ -1,3 +1,16 @@
 {
-    "defaultCommandTimeout": 10000
+    "defaultCommandTimeout": 10000,
+    "video": false,
+    "screenshot": false,
+    "reporter": "cypress-mochawesome-reporter",
+    "reporterOptions": {
+        "reportDir": "cypress/report/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "yyyymmdd_HHMMss",
+        "reportTitles": "Relatório",
+        "charts": true
+    }
+
 }

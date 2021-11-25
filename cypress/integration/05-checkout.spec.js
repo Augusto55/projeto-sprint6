@@ -5,7 +5,7 @@ import CSCarrinho from '../pages/sm_carrinho.page.js'
 import CSCheckout from '../pages/sm_checkout.page.js';
 
 describe('Testes de checkout/Positivos', () => {
-    beforeEach(() => {
+    before(() => {
         CSCadastro.acessarCommerceSuite()
         CSCarrinho.validarProdutos()
         CSCarrinho.validarModal()
@@ -18,6 +18,10 @@ describe('Testes de checkout/Positivos', () => {
     })
 
     it('Deve realizar o checkout logando com o CPF e confirmando os dados', () => {
+        CSCadastro.acessarCommerceSuite()
+        CSCarrinho.validarProdutos()
+        CSCarrinho.validarModal()
+        CSCarrinho.validarCarrinho()
         CSCheckout.validarLoginCheckout()
         CSCheckout.logarCPFCheckout()
         CSCheckout.validarCheckout()

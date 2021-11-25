@@ -124,8 +124,8 @@ export default class Base{
         var valorFormatado3 = valorFormatado2.split('-').join("")
         var valorFormatado4 = valorFormatado3.split('\n').join("")
         var valorFormatado5 = valorFormatado4.trim()
-          cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
-            let cpf = usuario.valido.cpf 
+          cy.readFile('cypress/fixtures/usuario.json').then((valorCPF) => {
+            let cpf = valorCPF.valido.cpf 
             let cpfFormatado = cpf.split('.').join("")
             let cpfFormatado2 = cpfFormatado.split('-').join("")
             let cpfFormatado3 = cpfFormatado2.trim()
@@ -181,17 +181,18 @@ export default class Base{
     static confirmarNomeInvalido(){
       for(let i=0; i<3; i++){
         cy.wait(3000)
-        this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((texto) => {
-        var textoFormatado = texto.split('*').join("")
+        this.getElementText('.ch-well.secret-answer-option.ch-text-center', i).then((invalido) => {
+        var textoFormatado = invalido.split('*').join("")
         var textoFormatado2 = textoFormatado.split(' ').join("")
         var textoFormatado3 = textoFormatado2.trim()
-          cy.readFile('cypress/fixtures/usuario.json').then((usuario) => {
-            let nome = usuario.valido.nome 
+          cy.readFile('cypress/fixtures/usuario.json').then((user) => {
+            let nome = user.valido.nome 
             let nomeFormatado = nome.split(' ').join("")
             let nomeFormatado2 = nomeFormatado.trim()
-            if(!nomeFormatado2.includes(textoFormatado3) || !texto.includes('Avenida') || !texto.includes('Brasil') || !texto.includes('Leste')){
-              this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i)
-              i = 3 
+            console.log(nomeFormatado2,textoFormatado3)
+            if(nomeFormatado2.includes(textoFormatado3) || invalido.includes('Avenida') || invalido.includes('Brasil') || invalido.includes('Leste')){
+            }else {
+              this.clickOnElement('.ch-well.secret-answer-option.ch-text-center', i, true)
             }
           })
         })
@@ -202,11 +203,11 @@ export default class Base{
 
 
     static selecionarValidacao(){
-      this.getElementText('.ch-input.ch-input-disabled.ch-text-center.ch-vspace-sm').then((texto) => {
-        if(texto.includes('CPF')){
+      this.getElementText('.ch-input.ch-input-disabled.ch-text-center.ch-vspace-sm').then((text) => {
+        if(text.includes('CPF')){
           this.confirmarCpf()
         }
-        else if(texto.includes('nome')){
+        else if(text.includes('nome')){
           this.confirmarNome()
         }
         else {

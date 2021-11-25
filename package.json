@@ -6,6 +6,7 @@
   "scripts": {
     "cy:run": "cypress run",
     "cy:open": "cypress open --config watchForFileChanges=false",
+    "test:e2e": "cypress run --headless --browser chrome --no-exit",
     "report:merge": "mochawesome-merge cypress/report/mochawesome-report/*.json > cypress/report/output.json",
     "report:generate": "marge cypress/report/output.json --reportDir ./ --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,14 +22,11 @@
   },
   "homepage": "https://github.com/Augusto55/projeto-sprint6#readme",
   "dependencies": {
-    "cypress": "^9.0.0",
+    "cypress": "8.7.0",
+    "cypress-mochawesome-reporter": "^2.3.0",
     "faker": "^5.5.3",
     "faker-br": "^0.4.1",
     "js-brasil": "^2.5.1"
   },
-  "devDependencies": {
-    "mochawesome": "^7.0.1",
-    "mochawesome-merge": "^4.2.0",
-    "mochawesome-report-generator": "^6.0.1"
-  }
+  "devDependencies": {}
 }
