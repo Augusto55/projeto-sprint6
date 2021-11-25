@@ -11,12 +11,12 @@ Dependências utilizadas no projeto:
 - Faker =  npm install -dev faker
 - FakerBr = npm install -dev faker-br
 - JsBrasil =  npm install -dev js-brasil
-- Mochawesome =  npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator
+- cypress-mochawesome-reporter =  npm i --save -dev cypress-mochawesome-reporter   
 
 
 Execução do código:
 
-- npm run cy:run (execução dos testes do cypress)  /  npm run cy:open (execução dos testes do cypress com interface gráfica) 
-- npm run report:merge (Roda os testes e gera um arquivo .json)
-- npm run report:generate (Transforma o arquivo .json em .html)
+- npm run cy:run (execução dos testes do cypress)*  /  npm run cy:open (execução dos testes do cypress com interface gráfica) 
 
+
+*O comando npm run cy:run também gera os relatórios em .html pela dependência cypress-mochawesome-reporter
